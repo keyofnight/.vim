@@ -1,5 +1,6 @@
 set nocompatible                " Disable vi compatibility mode, resets all.
 call pathogen#infect()          " Load the package manager *Pathogen*.
+filetype plugin indent on       " Make sure filetype detection is on.
 
 set t_Co=256                    " Use 256 colors, Vim.
 syntax enable                   " Syntax highlighting: activated.
