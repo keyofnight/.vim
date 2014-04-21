@@ -4,3 +4,9 @@
 [submodule "bundle/slim"]
 	path = bundle/slim
 	url = https://github.com/slim-template/vim-slim
+[submodule "bundle/pandoc"]
+	path = bundle/pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc
+[submodule "bundle/markdown"]
+	path = bundle/markdown
+	url = https://github.com/plasticboy/vim-markdown.git
