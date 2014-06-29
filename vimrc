@@ -25,7 +25,7 @@ set cmdheight=1                 " Small command prompt.
 set wildmenu                    " Command line completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest one.
                                 " 2nd tab: show wild menu.
-set nohlsearch                  " Don't highlight after search.
+set hlsearch                    " Don't highlight after search.
 set incsearch                   " ...but highlight during the search.
 set ignorecase                  " Case insensitivity during searches...
 set smartcase                   " ...until it matters.
@@ -35,13 +35,18 @@ set formatoptions=1             " ?
 
 set nu                          " Show line numbers. 
 
-set columns=80                  " Set width of the buffer.
+" set columns=80                  " Set width of the buffer.
 set wrap                        " Wrap text visually..
 set lbr                         " Only wrap text at the right time.
 set nolist                      " This would disable lbr if enabled.
 set tw=0                        " Disable permenant linebreaks.
 
+set cursorline                  " Highlight entire cursor row.
+set cursorcolumn                " Highlight entire cursor column.
+                                " (These two look super cool.)
+                                
+set mouse=a                     " Mouse support? Kinda lame.
 
-set mouse=a                     " Mouse support?
 vnoremap Y "*y                  " Yank to system clipboard in visual mode.
 nnoremap Y "*yy                 " ...in normal mode too.
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " Clear highlight on refresh.
