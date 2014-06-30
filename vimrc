@@ -5,7 +5,7 @@ filetype plugin indent on       " Make sure filetype detection is on.
 set t_Co=256                    " Use 256 colors, Vim.
 syntax enable                   " Syntax highlighting: activated.
 set background=dark             " Dark BG, brighter syntax.
-color jellybeans                " The baddest theme in the land.
+color ir_black-256                " The baddest theme in the land.
 
 set backspace=indent,eol,start  " Backspace over everything.
 set autoindent                  " Use previous the line's indentation...
