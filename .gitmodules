@@ -16,3 +16,9 @@
 [submodule "bundle/vim-colors-ir_black-256"]
 	path = bundle/vim-colors-ir_black-256
 	url = https://github.com/msutherl/vim-colors-ir_black-256
+[submodule "bundle/vim-colors-pencil"]
+	path = bundle/vim-colors-pencil
+	url = https://github.com/reedes/vim-colors-pencil
+[submodule "bundle/vim-hemisu"]
+	path = bundle/vim-hemisu
+	url = https://github.com/noahfrederick/vim-hemisu/
