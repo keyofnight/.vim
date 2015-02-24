@@ -31,3 +31,6 @@
 [submodule "bundle/vim-pandoc-syntax"]
 	path = bundle/vim-pandoc-syntax
 	url = https://github.com/vim-pandoc/vim-pandoc-syntax
+[submodule "bundle/rust.vim"]
+	path = bundle/rust.vim
+	url = https://github.com/rust-lang/rust.vim
