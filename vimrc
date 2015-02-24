@@ -50,3 +50,5 @@ set mouse=a                     " Mouse support? Kinda lame.
 vnoremap Y "*y                  " Yank to system clipboard in visual mode.
 nnoremap Y "*yy                 " ...in normal mode too.
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " Clear highlight on refresh.
+
+set nofoldenable
