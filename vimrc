@@ -4,8 +4,10 @@ filetype plugin indent on       " Make sure filetype detection is on.
 
 set t_Co=256                    " Use 256 colors, Vim.
 syntax enable                   " Syntax highlighting: activated.
-set background=light            " Dark BG, brighter syntax.
+set background=light            " ...for the right color background.
 color hemisu                    " The baddest theme in the land.
+                                " ...but don't mess with my termbg. 
+hi Normal ctermbg=NONE          
 
 set backspace=indent,eol,start  " Backspace over everything.
 set autoindent                  " Use previous the line's indentation...
@@ -25,10 +27,12 @@ set cmdheight=1                 " Small command prompt.
 set wildmenu                    " Command line completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest one.
                                 " 2nd tab: show wild menu.
+                                
 set hlsearch                    " Don't highlight after search.
 set incsearch                   " ...but highlight during the search.
 set ignorecase                  " Case insensitivity during searches...
 set smartcase                   " ...until it matters.
+
 set showmatch                   " Show matching braces on contact...
 set matchtime=1                 " ...for n*10 nanoseconds.
 set formatoptions=1             " ?
@@ -44,11 +48,13 @@ set tw=0                        " Disable permenant linebreaks.
 set cursorline                  " Highlight entire cursor row.
 set cursorcolumn                " Highlight entire cursor column.
                                 " (These two look super cool.)
-                                
-set mouse=a                     " Mouse support? Kinda lame.
 
-vnoremap Y "*y                  " Yank to system clipboard in visual mode.
+
+set nofoldenable                " Don't fold Markdown sections.
+
+
+" set mouse=a                     " Mouse support? Kinda lame.
+
+vnoremap Y "*y                  "Yank to system clipboard in visual mode.
 nnoremap Y "*yy                 " ...in normal mode too.
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l> " Clear highlight on refresh.
 
-set nofoldenable
