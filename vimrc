@@ -1,5 +1,5 @@
 set nocompatible                " Disable vi compatibility mode, resets all.
-call pathogen#infect()          " Load the package manager *Pathogen*.
+call pathogen#infect()          " Load the runtime path manager: Pathogen.
 filetype plugin indent on       " Make sure filetype detection is on.
 
 set t_Co=256                    " Use 256 colors, Vim.
@@ -47,14 +47,10 @@ set tw=0                        " Disable permenant linebreaks.
 
 set cursorline                  " Highlight entire cursor row.
 set cursorcolumn                " Highlight entire cursor column.
-                                " (These two look super cool.)
 
+set hidden                      " Don't bug me when switching buffers.
 
-set nofoldenable                " Don't fold Markdown sections.
-
-
-" set mouse=a                     " Mouse support? Kinda lame.
-
-vnoremap Y "*y                  "Yank to system clipboard in visual mode.
+vnoremap Y "*y                  " Yank to system clipboard in visual mode.
 nnoremap Y "*yy                 " ...in normal mode too.
 
+set nofoldenable                " Don't fold anything.
