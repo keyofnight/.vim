@@ -1,8 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/Users/key/Dropbox'
-let g:netrw_dirhist_2='/Users/key/.vim'
-let g:netrw_dirhist_3='/Users/key/Code'
-let g:netrw_dirhist_4='/Users/key/.vim/bundle/jellybeans'
-let g:netrw_dirhist_5='/Users/key/Downloads/mari0-source/mappacks'
-let g:netrw_dirhist_6='/Users/key/Code/platform.love'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/key/Code/tmbrwn.com'
+let g:netrw_dirhist_2='/Users/key/Code/tmbrwn.com/_posts'
