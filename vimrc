@@ -112,7 +112,7 @@ command! Code silent! iunmap <buffer> .|
             \ setlocal fo-=a
 
 autocmd BufNewFile,BufReadPre,FileReadPre 
-    \.markdown,*.mdown,*.mkdn,*.mkd,*.md,*.mdwn,
+    \*.markdown,*.mdown,*.mkdn,*.mkd,*.md,*.mdwn,
     \*.mdtxt,*.mdtext :Prose
 
 """
@@ -126,7 +126,7 @@ map [4~ <End>
 imap [1~ <Home>
 imap [4~ <End>
 
-" Yank to OSX keyboard.
+" Yank to OSX clipboard.
 
 vnoremap Y "*y
 nnoremap Y "*yy
@@ -148,10 +148,7 @@ nnoremap  <silent> k gk
 nnoremap  <silent> gj j
 nnoremap  <silent> gk k
 
- nnoremap  <silent> 0 g0
- nnoremap  <silent> $ g$
- nnoremap  <silent> g0 0
- nnoremap  <silent> g$ $
-
-
-
+nnoremap  <silent> 0 g0
+nnoremap  <silent> $ g$
+nnoremap  <silent> g0 0
+nnoremap  <silent> g$ $
