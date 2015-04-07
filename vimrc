@@ -75,6 +75,7 @@ let conceallevel=0              " Don't conceal anything.
 set nofoldenable                " Don't fold anything.
 
 " Set up spell checking. Also: <leader>s toggles spell check.
+
 if has("spell")
     set nospell    
     nnoremap <leader>s :set spell!<CR>
@@ -88,36 +89,6 @@ endif
 " Disable the annoying vim-pandoc conceal crap.
 let g:pandoc#syntax#conceal#use=0
 
-"""
-" Remapped keys. 
-"""
-
-" Yank to OSX keyboard.
-
-vnoremap Y "*y
-nnoremap Y "*yy
-
-" Move through display lines, not actual lines.
-
-noremap  <buffer> <silent> <Up>   gk
-noremap  <buffer> <silent> <Down> gj
-noremap  <buffer> <silent> <Home> g<Home>
-noremap  <buffer> <silent> <End>  g<End>
-
-inoremap <buffer> <silent> <Up>   <C-o>gk
-inoremap <buffer> <silent> <Down> <C-o>gj
-inoremap <buffer> <silent> <Home> <C-o>g<Home>
-inoremap <buffer> <silent> <End>  <C-o>g<End>
-
-noremap <buffer> <silent> j gj
-noremap <buffer> <silent> k gk
-noremap <buffer> <silent> gj j
-noremap <buffer> <silent> gk k
-
-noremap <buffer> <silent> 0 g0
-noremap <buffer> <silent> $ g$
-noremap <buffer> <silent> g0 0
-noremap <buffer> <silent> g$ $
 " Set up :Prose and :Code modes.
 
 command! Prose inoremap <buffer> . .<C-G>u|
@@ -143,3 +114,44 @@ command! Code silent! iunmap <buffer> .|
 autocmd BufNewFile,BufReadPre,FileReadPre 
     \.markdown,*.mdown,*.mkdn,*.mkd,*.md,*.mdwn,
     \*.mdtxt,*.mdtext :Prose
+
+"""
+" Remapped keys. 
+"""
+
+" Home/End by any other name...
+
+map [1~ <Home>
+map [4~ <End>
+imap [1~ <Home>
+imap [4~ <End>
+
+" Yank to OSX keyboard.
+
+vnoremap Y "*y
+nnoremap Y "*yy
+
+" Move through display lines, not actual lines.
+
+nnoremap <silent> <Up>   gk
+nnoremap <silent> <Down> gj
+nnoremap <silent> <Home> g<Home>
+nnoremap <silent> <End>  g<End>
+
+inoremap <silent> <Up>   <C-o>gk
+inoremap <silent> <Down> <C-o>gj
+inoremap <silent> <Home> <C-o>g<Home>
+inoremap <silent> <End>  <C-o>g<End>
+
+nnoremap  <silent> j gj
+nnoremap  <silent> k gk
+nnoremap  <silent> gj j
+nnoremap  <silent> gk k
+
+ nnoremap  <silent> 0 g0
+ nnoremap  <silent> $ g$
+ nnoremap  <silent> g0 0
+ nnoremap  <silent> g$ $
+
+
+
