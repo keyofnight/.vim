@@ -26,7 +26,7 @@ set background=light            " ...for the right color background.
 color hemisu                    " A nice pastel-colored theme.
                                 
 " ...but don't mess with my termbg.
-hi Normal ctermbg=NONE          
+hi Normal ctermbg=NONE
 
 set backspace=indent,eol,start  " Backspace over everything.
 set autoindent                  " Use previous the line's indentation...
@@ -59,7 +59,8 @@ set formatoptions=1r            " See :help fo-table.
 set relativenumber              " Line numbers relative to cursor...
 set number                      " ...show the current line's real number.
 
-" set columns=80                  " Set width of the buffer.
+set columns=80                  " Set width of the buffer.
+
 set nolist                      " This would disable lbr if enabled.
 set tw=0                        " Disable permanent linebreaks.
 set wrap                        " Softwrap on long lines.
@@ -72,7 +73,7 @@ set formatprg=par               " Format text using 'par.'
 set hidden                      " Don't bug me when switching buffers.
 
 let conceallevel=0              " Don't conceal anything.
-set nofoldenable                " Don't fold anything.
+" set nofoldenable                " Don't fold anything.
 
 " Set up spell checking. Also: <leader>s toggles spell check.
 
