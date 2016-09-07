@@ -73,7 +73,10 @@ set formatprg=par               " Format text using 'par.'
 set hidden                      " Don't bug me when switching buffers.
 
 let conceallevel=0              " Don't conceal anything.
-" set nofoldenable                " Don't fold anything.
+set nofoldenable                " Don't fold anything.
+
+" Disable the annoying vim-pandoc conceal crap.
+let g:pandoc#syntax#conceal#use=0
 
 " Set up spell checking. Also: <leader>s toggles spell check.
 
@@ -86,31 +89,6 @@ endif
 """
 " Plugin configuration.
 """
-
-" Disable the annoying vim-pandoc conceal crap.
-let g:pandoc#syntax#conceal#use=0
-
-" Set up :Prose and :Code modes.
-
-command! Prose inoremap <buffer> . .<C-G>u|
-            \ inoremap <buffer> ! !<C-G>u|
-            \ inoremap <buffer> ? ?<C-G>u|
-            \ inoremap <buffer> : :<C-G>u|
-            \ inoremap <buffer> , ,<C-G>u|
-            \ inoremap <buffer> ( (<C-G>u|
-            \ inoremap <buffer> ) )<C-G>u|
-            \ setlocal spell spelllang=en_us|
-            \ setlocal fo+=a
-
-command! Code silent! iunmap <buffer> .|
-            \ silent! iunmap <buffer> !|
-            \ silent! iunmap <buffer> ?|
-            \ silent! iunmap <buffer> :|
-            \ silent! iunmap <buffer> ,|
-            \ silent! iunmap <buffer> (|
-            \ silent! iunmap <buffer> )|
-            \ setlocal nospell
-            \ setlocal fo-=a
 
 autocmd BufNewFile,BufReadPre,FileReadPre 
     \*.markdown,*.mdown,*.mkdn,*.mkd,*.md,*.mdwn,
