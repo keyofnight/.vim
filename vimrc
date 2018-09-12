@@ -46,9 +46,9 @@ set history=500                 " Nice long command history.
 set cmdheight=1                 " Small command prompt. 
 
 """ Tab Completion """
-set path+=**                    " Include all subfolders in tab completions
+set path+=**                    " Include all subfolders in file completions
 set wildmenu                    " Command line tab completion.
-set wildmode=list:longest,full  " 1st tab: show options, use longest one.
+set wildmode=list:longest,full  " 1st tab: show options, use longest common
                                 " 2nd tab: show wild menu.
                                  
 "set hlsearch                    " Highlight *all* search matches.
@@ -59,7 +59,7 @@ set showmatch                   " Show matching braces on contact...
 set matchtime=1                 " ...for n*10 nanoseconds.
 
 set relativenumber              " Line numbers relative to cursor...
-set number                      " ...but show the current line's real number.
+set number                      " ...but show the current line's number.
 
 """ Wrap """
 set columns=80                  " Set width of the buffer.
@@ -70,9 +70,7 @@ set wrap                        " Softwrap on long lines.
 set formatprg=par               " Format text using 'par.'
 set formatoptions=1r            " See :help fo-table.
 
-" set cursorline                " Highlight entire cursor row.  set
-" cursorcolumn                  " Highlight entire cursor column.
-
+""" Buffers """ 
 set hidden                      " Don't bug me when switching buffers.
 
 """ Folding and Concealing """
