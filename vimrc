@@ -1,6 +1,6 @@
 """
 "
-" A 'vimrc' written by Timothy E. Brown
+" A 'vimrc' written by Tim Brown 
 " tw/gh: @keyofnight
 "
 " This is a configuration file for a text editor, so I don't care about 
@@ -8,13 +8,9 @@
 "
 """
 
-"""
-" General Settings.
-"""
-
+""" General Settings """
 set nocompatible                " Disable vi compatibility mode, resets all.
-
-call pathogen#infect()          " Load the runtime path manager: Pathogen.
+silent! call pathogen#infect()          " Load the runtime path manager: Pathogen.
 filetype plugin indent on       " Make sure filetype detection is on.
 Helptags                        " Make sure bundle help files work.
 
@@ -22,8 +18,17 @@ Helptags                        " Make sure bundle help files work.
 set t_Co=256                    " Use 256 colors for highlighting
 syntax enable                   " Syntax highlighting: activated.
 set background=light            " ...for the right color background.
-color hemisu                    " A nice pastel-colored theme.
-set guifont=Inconsolata:h14     " Specify font for gvim/macvim 
+silent! color hemisu                    " A nice pastel-colored theme.
+
+" Specify font for gvim/macvim 
+if has("gui_running")
+    if has("unix")
+        set guifont=Inconsolata\ 14
+    else
+        set guifont=Inconsolata:h14
+    endif
+endif
+
 " ...but don't mess with my termbg.
 hi Normal ctermbg=NONE
 
@@ -40,6 +45,7 @@ set softtabstop=4               " ...more tab spacing.
 set shiftwidth=4                " Number of spaces in each tab. 
 set shiftround                  " Indent to the nearest tabstop.
 
+""" Info bar and prompt """
 set ruler                       " Always show info at the bottom.
 set showcmd                     " Always show commands 
 set history=500                 " Nice long command history.
@@ -50,43 +56,38 @@ set path+=**                    " Include all subfolders in file completions
 set wildmenu                    " Command line tab completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest common
                                 " 2nd tab: show wild menu.
-                                 
-"set hlsearch                    " Highlight *all* search matches.
+
+""" Search """
 set incsearch                   " Search as I type.
 set ignorecase                  " Case insensitivity during searches...
 set smartcase                   " ...until the pattern contains uppercase.
 set showmatch                   " Show matching braces on contact...
 set matchtime=1                 " ...for n*10 nanoseconds.
 
-set relativenumber              " Line numbers relative to cursor...
-set number                      " ...but show the current line's number.
-
 """ Wrap """
-set columns=80                  " Set width of the buffer.
-set nolist                      " This would disable lbr if enabled.
-set tw=79                       " Wrap at char n.
+set nolist                      " No EOL characters (breaks LBR)
+set textwidth=80                " Wrap at char n.
 set wrap                        " Softwrap on long lines.
-"set lbr                        " Don't break in the middle of a word.
 set formatprg=par               " Format text using 'par.'
-set formatoptions=1r            " See :help fo-table.
+set formatoptions=tcqn1         " See :help fo-table.
 
 """ Buffers """ 
-set hidden                      " Don't bug me when switching buffers.
+set hidden                      " Don't bug me.
 
 """ Folding and Concealing """
-let conceallevel=0              " Don't conceal anything.
-let g:pandoc#syntax#conceal#use=0
-"set nofoldenable               " Don't fold anything.
+if has ('folding')
+    set foldenable
+    let conceallevel=0          " Don't conceal anything.
+    if has ('windows')
+        set fillchars=vert:\   " Beautify vertical splits.
+    endif
+endif
 
 """ Spelling """
 if has("spell")
     set nospell    
     nnoremap <leader>s :set spell!<CR>
 endif
-
-""" Netrw """
-let g:netrw_banner = 0          " No top banner.
-let g:netrw_liststyle = 3       " Tree view 
 
 
 """
@@ -102,3 +103,17 @@ imap [4~ <End>
 " Yank to OSX clipboard.
 vnoremap Y "*y
 nnoremap Y "*yy
+
+"""
+" Plugin-specific settings.
+"""
+
+""" ViM-Pandoc """
+let g:pandoc#syntax#conceal#use=0 
+let g:pandoc#folding#level=2
+let g:pandoc#folding#fdc=0
+let g:pandoc#formatting#mode = 'hA'
+
+""" Netrw """
+let g:netrw_banner = 0          " No top banner.
+let g:netrw_liststyle = 3       " Tree view 
