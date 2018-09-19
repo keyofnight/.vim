@@ -1,0 +1,18 @@
+[submodule "bundle/vim-surround"]
+	path = bundle/vim-surround
+	url = https://github.com/tpope/vim-surround
+[submodule "bundle/vim-repeat"]
+	path = bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat
+[submodule "bundle/vim-hemisu"]
+	path = bundle/vim-hemisu
+	url = https://github.com/noahfrederick/vim-hemisu
+[submodule "bundle/vim-pandoc"]
+	path = bundle/vim-pandoc
+	url = https://github.com/vim-pandoc/vim-pandoc
+[submodule "bundle/vim-pandoc-syntax"]
+	path = bundle/vim-pandoc-syntax
+	url = https://github.com/vim-pandoc/vim-pandoc-syntax
+[submodule "bundle/vim-taskwarrior"]
+	path = bundle/vim-taskwarrior
+	url = https://github.com/blindFS/vim-taskwarrior
