@@ -13,3 +13,7 @@ Thumbs.db
 spell
 spell/*
 .netrwhist
+
+# Exclude swap.
+
+vimrc.swp

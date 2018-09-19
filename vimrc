@@ -10,7 +10,7 @@
 
 """ General Settings """
 set nocompatible                " Disable vi compatibility mode, resets all.
-silent! call pathogen#infect()          " Load the runtime path manager: Pathogen.
+silent! call pathogen#infect()  " Load the runtime path manager: Pathogen.
 filetype plugin indent on       " Make sure filetype detection is on.
 Helptags                        " Make sure bundle help files work.
 
@@ -89,6 +89,11 @@ if has("spell")
     nnoremap <leader>s :set spell!<CR>
 endif
 
+
+""" Terminal """
+if has("terminal")
+    set termwinscroll=2000
+endif
 
 """
 " Remapped keys. 
