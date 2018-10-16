@@ -45,6 +45,11 @@ set softtabstop=4               " ...more tab spacing.
 set shiftwidth=4                " Number of spaces in each tab. 
 set shiftround                  " Indent to the nearest tabstop.
 
+""" Numbering """
+
+set number                      " Line numbers
+set relativenumber              " ...relative to the current line.
+
 """ Info bar and prompt """
 set ruler                       " Always show info at the bottom.
 set showcmd                     " Always show commands 
@@ -63,13 +68,13 @@ set ignorecase                  " Case insensitivity during searches...
 set smartcase                   " ...until the pattern contains uppercase.
 set showmatch                   " Show matching braces on contact...
 set matchtime=1                 " ...for n*10 nanoseconds.
+set hlsearch                    " Highlight all matches.
 
 """ Wrap """
 set nolist                      " No EOL characters (breaks LBR)
 set textwidth=80                " Wrap at char n.
 set wrap                        " Softwrap on long lines.
-set formatprg=par               " Format text using 'par.'
-set formatoptions=tcqn1         " See :help fo-table.
+set formatoptions=cqn1         " See :help fo-table.
 
 """ Buffers """ 
 set hidden                      " Don't bug me.
@@ -104,6 +109,8 @@ map [1~ <Home>
 map [4~ <End>
 imap [1~ <Home>
 imap [4~ <End>
+vmap [1~ <Home>
+vmap [4~ <End>
 
 " Yank to OSX clipboard.
 vnoremap Y "*y
@@ -113,12 +120,12 @@ nnoremap Y "*yy
 " Plugin-specific settings.
 """
 
-""" ViM-Pandoc """
+""" vim-pandoc """
 let g:pandoc#syntax#conceal#use=0 
-let g:pandoc#folding#level=2
+let g:pandoc#folding#level=0
 let g:pandoc#folding#fdc=0
 let g:pandoc#formatting#mode = 'hA'
 
-""" Netrw """
+""" netrw """
 let g:netrw_banner = 0          " No top banner.
 let g:netrw_liststyle = 3       " Tree view 
