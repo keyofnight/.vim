@@ -74,7 +74,7 @@ set hlsearch                    " Highlight all matches.
 set nolist                      " No EOL characters (breaks LBR)
 set textwidth=80                " Wrap at char n.
 set wrap                        " Softwrap on long lines.
-set formatoptions=cqn1         " See :help fo-table.
+set formatoptions=tcqn1         " See :help fo-table.
 
 """ Buffers """ 
 set hidden                      " Don't bug me.
@@ -119,12 +119,6 @@ nnoremap Y "*yy
 """
 " Plugin-specific settings.
 """
-
-""" vim-pandoc """
-let g:pandoc#syntax#conceal#use=0 
-let g:pandoc#folding#level=0
-let g:pandoc#folding#fdc=0
-let g:pandoc#formatting#mode = 'hA'
 
 """ netrw """
 let g:netrw_banner = 0          " No top banner.
