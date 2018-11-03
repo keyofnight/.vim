@@ -36,7 +36,6 @@ hi Normal ctermbg=NONE
 """ Indentation """
 set backspace=indent,eol,start  " Backspace over everything.
 set autoindent                  " Use previous the line's indentation...
-set smartindent                 " ...indent in the right places.
 
 """ Tabs """"
 set expandtab                   " Spaces, not tabs.
@@ -119,10 +118,13 @@ augroup FastEsc
   au InsertLeave * set ttimeoutlen=50
 augroup END
 
-
 " Yank to macOS clipboard.
 vnoremap Y "*y
 nnoremap Y "*yy
+
+" Switch buffers quickly.
+nnoremap <Tab> :bnext<CR>
+nnoremap <S-Tab> :bprevious<CR>
 
 """
 " Plugin-specific settings.
@@ -132,6 +134,10 @@ nnoremap Y "*yy
 let g:netrw_banner = 0          " No top banner.
 let g:netrw_liststyle = 3       " Tree view 
 
+""" pandoc
+let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
+let g:pandoc#filetypes#pandoc_markdown = 0             
+
 """ airline """
 let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
@@ -140,7 +146,8 @@ let g:airline#extensions#whitespace#enabled = 0
 
 """ pencil """
 augroup pencil
-  autocmd!
-  autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
+    autocmd!
+    autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
 augroup END
+
 
