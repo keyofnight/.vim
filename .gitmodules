@@ -10,9 +10,6 @@
 [submodule "bundle/vim-pandoc"]
 	path = bundle/vim-pandoc
 	url = https://github.com/vim-pandoc/vim-pandoc
-[submodule "bundle/vim-pencil"]
-	path = bundle/vim-pencil
-	url = https://github.com/reedes/vim-pencil
 [submodule "bundle/vim-airline"]
 	path = bundle/vim-airline
 	url = https://github.com/bling/vim-airline
@@ -22,3 +19,6 @@
 [submodule "bundle/vim-fugitive"]
 	path = bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
+[submodule "bundle/FastFold"]
+	path = bundle/FastFold
+	url = https://github.com/Konfekt/FastFold

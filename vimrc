@@ -16,7 +16,7 @@ Helptags                        " Make sure bundle help files work.
 
 """ Font/Color settings. """
 set t_Co=256                    " Use 256 colors for highlighting
-syntax enable                   " Syntax highlighting: activated.
+syntax on                       " Syntax highlighting: activated.
 set background=light            " ...for the right color background.
 silent! color hemisu            " A nice pastel-colored theme.
 
@@ -60,7 +60,6 @@ set path+=**                    " Include all subfolders in file completions
 set wildmenu                    " Command line tab completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest common
                                 " 2nd tab: show wild menu.
-
 """ Search """
 set incsearch                   " Search as I type.
 set ignorecase                  " Case insensitivity during searches...
@@ -71,60 +70,38 @@ set hlsearch                    " Highlight all matches.
 
 """ Wrap """
 set nolist                      " No EOL characters (breaks LBR)
-set textwidth=74                " Wrap at char n.
+set textwidth=79                " Wrap at char n.
 set wrap                        " Wrap on lines > tw.
-set formatoptions=cqn1         " See :help fo-table.
+set formatoptions=qn1         " See :help fo-table.
 
 """ Buffers """ 
 set hidden                      " Don't bug me.
 
+""" Windows """
+if has ('windows')
+    set fillchars=vert:\        " Beautify vertical splits.
+endif
+
 """ Folding and Concealing """
 if has ('folding')
     set foldenable
-    let conceallevel=0          " Don't conceal anything.
-    if has ('windows')
-        set fillchars=vert:\   " Beautify vertical splits.
-    endif
 endif
-
-""" Spelling """
-if has("spell")
-    set nospell    
-    nnoremap <leader>s :set spell!<CR>
-endif
-
-
-""" Terminal """
-if has("terminal")
-    set termwinscroll=2000
-endif
+let conceallevel=0          " Don't conceal anything.
 
 """
 " Remapped / modified keys. 
 """
 
-" Recognize escape codes for <Home> and <End>
-map [1~ <Home>
-map [4~ <End>
-imap [1~ <Home>
-imap [4~ <End>
-vmap [1~ <Home>
-vmap [4~ <End>
-
-" Since *map waits for escape codes until timeout, use a short timeout. 
-augroup FastEsc
-  autocmd!
-  au InsertEnter * set timeoutlen=50
-  au InsertLeave * set ttimeoutlen=50
-augroup END
-
 " Yank to macOS clipboard.
 vnoremap Y "*y
 nnoremap Y "*yy
 
-" Switch buffers quickly.
+" Switch buffers quickly ising <Tab>.
 nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
+
+" Clear highlighting until next search.
+nnoremap <leader>/ :noh<return><esc>
 
 """
 " Plugin-specific settings.
@@ -136,18 +113,13 @@ let g:netrw_liststyle = 3       " Tree view
 
 """ pandoc
 let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-let g:pandoc#filetypes#pandoc_markdown = 0             
+let g:pandoc#filetypes#pandoc_markdown = 0
+" let g:pandoc#modules#disabled = ["formatting"]
+let g:pandoc#formatting#mode = 'hA'
 
 """ airline """
 let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 1
-let g:airline_section_x = '%{PencilMode()}'
 let g:airline#extensions#whitespace#enabled = 0
-
-""" pencil """
-augroup pencil
-    autocmd!
-    autocmd FileType markdown,mkd call pencil#init({'wrap': 'hard'})
-augroup END
-
+let g:airline_detect_spell=0
 
