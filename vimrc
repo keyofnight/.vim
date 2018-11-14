@@ -15,7 +15,8 @@ filetype plugin indent on       " Make sure filetype detection is on.
 Helptags                        " Make sure bundle help files work.
 
 """ Font/Color settings. """
-set t_Co=256                    " Use 256 colors for highlighting
+" set t_Co=256                    " Use 256 colors for highlighting
+set termguicolors
 syntax on                       " Syntax highlighting: activated.
 set background=light            " ...for the right color background.
 silent! color hemisu            " A nice pastel-colored theme.
@@ -49,8 +50,11 @@ set shiftround                  " Indent to the nearest tabstop.
 set number                      " Line numbers
 set relativenumber              " ...relative to the current line.
 
-""" Info bar and prompt """
-set ruler                       " Always show info at the bottom.
+""" Status line"""
+set laststatus=2                " Always show a status-line.
+set ruler                       " Always show line/column in it. 
+
+""" Command prompt """
 set showcmd                     " Always show commands 
 set history=500                 " Nice long command history.
 set cmdheight=1                 " Small command prompt. 
@@ -83,9 +87,11 @@ if has ('windows')
 endif
 
 """ Folding and Concealing """
-if has ('folding')
+if has('folding')
     set foldenable
+    set foldcolumn=0
 endif
+
 let conceallevel=0          " Don't conceal anything.
 
 """
@@ -101,7 +107,7 @@ nnoremap <Tab> :bnext<CR>
 nnoremap <S-Tab> :bprevious<CR>
 
 " Clear highlighting until next search.
-nnoremap <leader>/ :noh<return><esc>
+nnoremap <leader>\ :noh<return><esc>
 
 """
 " Plugin-specific settings.
@@ -112,13 +118,12 @@ let g:netrw_banner = 0          " No top banner.
 let g:netrw_liststyle = 3       " Tree view 
 
 """ pandoc
-let g:pandoc#filetypes#handled = ["pandoc", "markdown"]
-let g:pandoc#filetypes#pandoc_markdown = 0
-" let g:pandoc#modules#disabled = ["formatting"]
 let g:pandoc#formatting#mode = 'hA'
+let g:pandoc#folding#fdc = 0
+let g:pandoc#syntax#conceal#use = 0 
 
 """ airline """
-let g:airline_theme = 'base16'
+let g:airline_theme = 'zenburn'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#whitespace#enabled = 0
 let g:airline_detect_spell=0
