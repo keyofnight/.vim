@@ -18,4 +18,7 @@
 	url = https://github.com/prabirshrestha/vim-lsp
 [submodule "bundle/bufkill.vim"]
 	path = bundle/bufkill.vim
-	url = https://github.com/vim-scripts/bufkill.vim
+    url = https://github.com/vim-scripts/bufkill.vim
+[submodule "bundle/vim-fugitive"]
+    path = bundle/vim-fugitive
+    url = https://github.com/tpope/vim-fugitive
