@@ -25,6 +25,17 @@ set termguicolors
 syntax on                       " Syntax highlighting: activated.
 silent! color hemisu            " A nice pastel-colored theme.
 
+" Don't mess with termbg.
+hi Normal   ctermbg=NONE guibg=NONE
+hi NonText  ctermbg=NONE guibg=NONE
+
+""" Specify font for gvim/macvim 
+if has("gui_running")
+    if has("gui_macvim")
+        set guifont=InconsolataLGC\ Nerd\ Font:h14
+    endif
+endif
+
 """ Automatic Dark/Light Switching for MacVim
 if has("gui_running") && exists("##OSAppearanceChanged")
   
@@ -45,17 +56,6 @@ if has("gui_running") && exists("##OSAppearanceChanged")
   call SetBackgroundFromOS()  
 endif
 
-""" Specify font for gvim/macvim 
-if has("gui_running")
-    if has("gui_macvim")
-        set guifont=InconsolataLGC\ Nerd\ Font:h14
-    endif
-endif
-
-" ...but don't mess with my termbg.
-hi Normal   ctermbg=NONE guibg=NONE
-hi NonText  ctermbg=NONE guibg=NONE
-
 """ Indentation
 set backspace=indent,eol,start  " Backspace over everything.
 "set autoindent                  " Use previous the line's indentation...
@@ -69,21 +69,12 @@ set softtabstop=4               " ...more tab spacing.
 set shiftwidth=4                " Number of spaces in each tab. 
 set shiftround                  " Indent to the nearest tabstop.
 
-""" Hard Wrap
-"set nolist                      " No EOL characters (breaks LBR)
-"set textwidth=79                " Wrap at char n.
-"set nowrap                      " No soft wrapping.
-
 """ Soft Wrap
+set formatoptions=tq1         " See :help fo-table.
 set wrap
 set nolist
 set linebreak
 set textwidth=0
-
-
-""" Numbering 
-set number                      " Line numbers
-set relativenumber              " ...relative to the current line.
 
 """ Status line
 set laststatus=2                " Always show a status-line.
@@ -106,7 +97,6 @@ set path+=**                    " Include all subfolders in file completions
 set wildmenu                    " Command line tab completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest common
 
-set formatoptions=tq1         " See :help fo-table.
 
 """ Buffers 
 set hidden                      " Don't bug me.
@@ -158,22 +148,6 @@ nnoremap <leader>p :bprevious<CR>
 """ Clear highlighting until next search.
 nnoremap <leader>\ :noh<return><esc>
 
-""" Soft wrap goodies
-"noremap  <buffer> <silent> <Up>   gk
-"noremap  <buffer> <silent> <Down> gj
-"noremap  <buffer> <silent> <Home> g<Home>
-"noremap  <buffer> <silent> <End>  g<End>
-"
-"inoremap <buffer> <silent> <Up>   <C-o>gk
-"inoremap <buffer> <silent> <Down> <C-o>gj
-"inoremap <buffer> <silent> <Home> <C-o>g<Home>
-"inoremap <buffer> <silent> <End>  <C-o>g<End>
-"
-"nnoremap j gj
-"nnoremap k gk
-"nnoremap 0 g0
-"nnoremap $ g$
-
 """
 " Plugin-specific settings.
 """
@@ -189,6 +163,7 @@ let g:fastfold_force = 1
 map f <Plug>Sneak_s
 map F <Plug>Sneak_S
 
+""" Pandoc
 let g:pandoc#formatting#mode = 's'
 let g:pandoc#modules#disabled = ["folding"]
 let g:pandoc#folding#fdc = 0
