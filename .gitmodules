@@ -13,3 +13,9 @@
 [submodule "bundle/vim-sneak"]
 	path = bundle/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
+[submodule "bundle/vim-lsp"]
+	path = bundle/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "bundle/bufkill.vim"]
+	path = bundle/bufkill.vim
+	url = https://github.com/vim-scripts/bufkill.vim
