@@ -8,37 +8,60 @@
 "
 """
 
-""" General Settings """
+"""
+" General Settings 
+"""
 set nocompatible                " Disable vi compatibility mode, resets all.
 silent! call pathogen#infect()  " Load the runtime path manager: Pathogen.
 filetype plugin indent on       " Make sure filetype detection is on.
 Helptags                        " Make sure bundle help files work.
 
-""" Font/Color settings. """
+""" Environment
+set title
+
+""" Font/Color 
 " set t_Co=256                    " Use 256 colors for highlighting
 set termguicolors
 syntax on                       " Syntax highlighting: activated.
-set background=light            " ...for the right color background.
 silent! color hemisu            " A nice pastel-colored theme.
 
-
-" Specify font for gvim/macvim 
-if has("gui_running")
-    if has("unix")
-        set guifont=Inconsolata\ 14
+""" Automatic Dark/Light Switching for MacVim
+if has("gui_running") && exists("##OSAppearanceChanged")
+  
+  function! SetBackgroundFromOS()
+    if v:os_appearance == 1
+      set background=dark
     else
-        set guifont=Inconsolata:h14
+      set background=light
+    endif
+    redraw!
+  endfunction
+
+  augroup MacVimAutoTheme
+    autocmd!
+    autocmd OSAppearanceChanged * call SetBackgroundFromOS()
+  augroup END
+
+  call SetBackgroundFromOS()  
+endif
+
+""" Specify font for gvim/macvim 
+if has("gui_running")
+    if has("gui_macvim")
+        set guifont=InconsolataLGC\ Nerd\ Font:h14
     endif
 endif
 
 " ...but don't mess with my termbg.
-hi Normal ctermbg=NONE
+hi Normal   ctermbg=NONE guibg=NONE
+hi NonText  ctermbg=NONE guibg=NONE
 
-""" Indentation """
+""" Indentation
 set backspace=indent,eol,start  " Backspace over everything.
-set autoindent                  " Use previous the line's indentation...
+"set autoindent                  " Use previous the line's indentation...
+"set smartindent
 
-""" Tabs """"
+""" Tabs
 set expandtab                   " Spaces, not tabs.
 set smarttab                    " Tabs at the beginning of a line.
 set tabstop=4                   " Tab spacing...
@@ -46,25 +69,62 @@ set softtabstop=4               " ...more tab spacing.
 set shiftwidth=4                " Number of spaces in each tab. 
 set shiftround                  " Indent to the nearest tabstop.
 
-""" Numbering """
+""" Hard Wrap
+"set nolist                      " No EOL characters (breaks LBR)
+"set textwidth=79                " Wrap at char n.
+"set nowrap                      " No soft wrapping.
+
+""" Soft Wrap
+set wrap
+set nolist
+set linebreak
+set textwidth=0
+
+
+""" Numbering 
 set number                      " Line numbers
 set relativenumber              " ...relative to the current line.
 
-""" Status line"""
+""" Status line
 set laststatus=2                " Always show a status-line.
-set ruler                       " Always show line/column in it. 
+set statusline=
+set statusline+=\ %f\                 " Filename
+set statusline+=\ %m                  " Modified?
+set statusline+=%{%&readonly?'!':''%} " Read only?
+"set statusline+=\ %y                 " Filetype
+set statusline+=%=                    " Right align
+set statusline+=\ %l/%L               " Line/Total
+set statusline+=\ %p%%                " Percentage
 
-""" Command prompt """
+""" Command prompt
 set showcmd                     " Always show commands 
 set history=500                 " Nice long command history.
 set cmdheight=1                 " Small command prompt. 
 
-""" Tab Completion """
+""" Tab Completion 
 set path+=**                    " Include all subfolders in file completions
 set wildmenu                    " Command line tab completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest common
-                                " 2nd tab: show wild menu.
-""" Search """
+
+set formatoptions=tq1         " See :help fo-table.
+
+""" Buffers 
+set hidden                      " Don't bug me.
+
+""" Windows
+if has ('windows')
+    set fillchars=vert:\        " Beautify vertical splits.
+endif
+
+""" Folding and Concealing
+if has('folding')
+    set foldenable
+    set foldcolumn=0
+endif
+
+set conceallevel=0              " Don't conceal anything.
+
+""" Search
 set incsearch                   " Search as I type.
 set ignorecase                  " Case insensitivity during searches...
 set smartcase                   " ...until the pattern contains uppercase.
@@ -72,59 +132,69 @@ set showmatch                   " Show matching braces on contact...
 set matchtime=1                 " ...for n*10 nanoseconds.
 set hlsearch                    " Highlight all matches.
 
-""" Wrap """
-set nolist                      " No EOL characters (breaks LBR)
-set textwidth=79                " Wrap at char n.
-set wrap                        " Wrap on lines > tw.
-set formatoptions=qn1         " See :help fo-table.
+""" Auto complete
+set infercase
+set completeopt=menuone,noselect
+set complete=.,w,b,u,k  " scan from: current, windows, unloaded buffers,
+                        "            & dictionaries.
 
-""" Buffers """ 
-set hidden                      " Don't bug me.
+" Tab through completion menu.
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-""" Windows """
-if has ('windows')
-    set fillchars=vert:\        " Beautify vertical splits.
-endif
-
-""" Folding and Concealing """
-if has('folding')
-    set foldenable
-    set foldcolumn=0
-endif
-
-let conceallevel=0          " Don't conceal anything.
 
 """
-" Remapped / modified keys. 
+""" Remapped / modified keys. 
 """
 
-" Yank to macOS clipboard.
+""" Yank to macOS clipboard.
 vnoremap Y "*y
 nnoremap Y "*yy
 
-" Switch buffers quickly ising <Tab>.
-nnoremap <Tab> :bnext<CR>
-nnoremap <S-Tab> :bprevious<CR>
+""" Switch buffers quickly using <leader>n/p.
+nnoremap <leader>n :bnext<CR>
+nnoremap <leader>p :bprevious<CR>
 
-" Clear highlighting until next search.
+""" Clear highlighting until next search.
 nnoremap <leader>\ :noh<return><esc>
+
+""" Soft wrap goodies
+"noremap  <buffer> <silent> <Up>   gk
+"noremap  <buffer> <silent> <Down> gj
+"noremap  <buffer> <silent> <Home> g<Home>
+"noremap  <buffer> <silent> <End>  g<End>
+"
+"inoremap <buffer> <silent> <Up>   <C-o>gk
+"inoremap <buffer> <silent> <Down> <C-o>gj
+"inoremap <buffer> <silent> <Home> <C-o>g<Home>
+"inoremap <buffer> <silent> <End>  <C-o>g<End>
+"
+"nnoremap j gj
+"nnoremap k gk
+"nnoremap 0 g0
+"nnoremap $ g$
 
 """
 " Plugin-specific settings.
 """
 
-""" netrw """
+""" netrw
 let g:netrw_banner = 0          " No top banner.
 let g:netrw_liststyle = 3       " Tree view 
 
-""" pandoc
-let g:pandoc#formatting#mode = 'hA'
-let g:pandoc#folding#fdc = 0
-let g:pandoc#syntax#conceal#use = 0 
+""" FastFold
+let g:fastfold_force = 1
 
-""" airline """
-let g:airline_theme = 'zenburn'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#whitespace#enabled = 0
-let g:airline_detect_spell=0
+""" sneak
+map f <Plug>Sneak_s
+map F <Plug>Sneak_S
+
+let g:pandoc#formatting#mode = 's'
+let g:pandoc#modules#disabled = ["folding"]
+let g:pandoc#folding#fdc = 0
+"let g:pandoc#folding#mode = 'syntax'
+let g:pandoc#folding#fastfolds = 1
+
+""" pandoc-syntax
+let g:pandoc#syntax#conceal#use = 0 
 
