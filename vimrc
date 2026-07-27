@@ -20,7 +20,6 @@ Helptags                        " Make sure bundle help files work.
 set title
 
 """ Font/Color 
-" set t_Co=256                    " Use 256 colors for highlighting
 set termguicolors
 syntax on                       " Syntax highlighting: activated.
 silent! color hemisu            " A nice pastel-colored theme.
@@ -34,26 +33,6 @@ if has("gui_running")
     if has("gui_macvim")
         set guifont=InconsolataLGC\ Nerd\ Font:h14
     endif
-endif
-
-""" Automatic Dark/Light Switching for MacVim
-if has("gui_running") && exists("##OSAppearanceChanged")
-  
-  function! SetBackgroundFromOS()
-    if v:os_appearance == 1
-      set background=dark
-    else
-      set background=light
-    endif
-    redraw!
-  endfunction
-
-  augroup MacVimAutoTheme
-    autocmd!
-    autocmd OSAppearanceChanged * call SetBackgroundFromOS()
-  augroup END
-
-  call SetBackgroundFromOS()  
 endif
 
 """ Indentation
@@ -77,7 +56,7 @@ set linebreak
 set textwidth=0
 
 """ Status line
-set laststatus=2                " Always show a status-line.
+set laststatus=2                      " Always show a status-line.
 set statusline=
 set statusline+=\ %f\                 " Filename
 set statusline+=\ %m                  " Modified?
@@ -171,5 +150,4 @@ let g:pandoc#folding#fdc = 0
 let g:pandoc#folding#fastfolds = 1
 
 """ pandoc-syntax
-let g:pandoc#syntax#conceal#use = 0 
-
+let g:pandoc#syntax#conceal#use = 0
