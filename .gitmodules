@@ -23,3 +23,6 @@
 	path = bundle/coc.nvim
 	url = https://github.com/neoclide/coc.nvim
 	branch = release
+[submodule "vim-lumen"]
+	path = vim-lumen
+	url = https://github.com/vimpostor/vim-lumen
