@@ -233,4 +233,23 @@ let g:pandoc#folding#fastfolds = 1
 """ pandoc-syntax
 let g:pandoc#syntax#conceal#use = 0
 
+""" CoC
+set signcolumn=yes
 
+function! ToggleCocDiagnosticsList() abort
+   for win in getwininfo()
+        if get(win, 'loclist', 0) == 1
+            lclose
+            return
+        endif
+    endfor
+    CocDiagnostics
+endfunction
+
+nnoremap <silent> <leader>e :call ToggleCocDiagnosticsList()<CR>
+
+nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
+
+nmap <silent><nowait> <leader>d <Plug>(coc-diagnostic-info)  " show popup at cursor
+nnoremap <silent> <leader>D :call coc#float#close_all()<CR>  " hide popup at cursor 
