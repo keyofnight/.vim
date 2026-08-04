@@ -248,8 +248,32 @@ endfunction
 
 nnoremap <silent> <leader>e :call ToggleCocDiagnosticsList()<CR>
 
+function! ToggleCocDiagnosticPopup() abort
+    let l:had_popup = 0
+
+    if exists('g:coc_last_float_win') && exists('*popup_list') &&
+                \ index(popup_list(), g:coc_last_float_win) >= 0
+        let l:had_popup = 1
+    endif
+
+    for l:w in getwininfo()
+        if get(l:w, 'previewwindow', 0) == 1
+            let l:had_popup = 1
+            break
+        endif
+    endfor
+
+    if l:had_popup
+        silent! call coc#float#close_all()
+        silent! pclose
+        return
+    endif
+
+    call feedkeys("\<Plug>(coc-diagnostic-info)", 'n')
+endfunction
+
+nnoremap <silent> <leader>d :call ToggleCocDiagnosticPopup()<CR>
+
 nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
 nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
 
-nmap <silent><nowait> <leader>d <Plug>(coc-diagnostic-info)  " show popup at cursor
-nnoremap <silent> <leader>D :call coc#float#close_all()<CR>  " hide popup at cursor 
