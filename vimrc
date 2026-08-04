@@ -136,7 +136,8 @@ endfunction
 
 set statusline=
 set statusline=%{%GetModeName()%}\    " Mode name
-set statusline+=\ %f\                 " Filename
+                                      " ParentDir/Filename
+set statusline+=\ %<%{fnamemodify(expand('%:p:h'),':t')}/%t
 set statusline+=\ %m                  " Modified?
 set statusline+=%{%&readonly?'!':''%} " Read only?
 "set statusline+=\ %y                 " Filetype
@@ -153,7 +154,6 @@ set cmdheight=1                 " Small command prompt.
 set path+=**                    " Include all subfolders in file completions
 set wildmenu                    " Command line tab completion.
 set wildmode=list:longest,full  " 1st tab: show options, use longest common
-
 
 """ Buffers 
 set hidden                      " Don't bug me.
@@ -212,6 +212,7 @@ nnoremap <leader>\ :noh<return><esc>
 """ netrw
 let g:netrw_banner = 0          " No top banner.
 let g:netrw_liststyle = 3       " Tree view 
+let g:BufKillVerbose = 0        " Supress 'failed to find bufnr #' errors.
 
 """ FastFold
 let g:fastfold_force = 1
@@ -231,3 +232,5 @@ let g:pandoc#folding#fastfolds = 1
 
 """ pandoc-syntax
 let g:pandoc#syntax#conceal#use = 0
+
+
